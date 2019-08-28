@@ -27,8 +27,9 @@ public class Main {
 				int res;
 
 				if (text.charAt(0)=='@'){
-					res = Command.send(text);
+					res = Command.send(text, login);
 				} else {
+
 					Message m = new Message(login, text);
 					res = m.send(Utils.getURL() + "/add");
 				}
