@@ -20,13 +20,18 @@ public class Main {
 			th.setDaemon(true);
 			th.start();
 
-            System.out.println("Enter your message: ");
+            System.out.println("Enter your message or @command: ");
 			while (true) {
 				String text = scanner.nextLine();
 				if (text.isEmpty()) break;
+				int res;
 
-				Message m = new Message(login, text);
-				int res = m.send(Utils.getURL() + "/add");
+				if (text.charAt(0)=='@'){
+					res = Command.send(text);
+				} else {
+					Message m = new Message(login, text);
+					res = m.send(Utils.getURL() + "/add");
+				}
 
 				if (res != 200) { // 200 OK
 					System.out.println("HTTP error occured: " + res);
