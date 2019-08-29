@@ -21,6 +21,12 @@ public class Message {
 		this.text = text;
 	}
 
+	public Message(String from, String to, String text) {
+		this.from = from;
+		this.to = to;
+		this.text = text;
+	}
+
 	public String toJSON() {
 		Gson gson = new GsonBuilder().create();
 		return gson.toJson(this);

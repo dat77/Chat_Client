@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 public class Command {
 
     public static int send(String... param) throws IOException {
-        String[] params = param[0].split(" ");
+        String[] params = param[0].split(" -");
         params[0] = params[0].substring(1);
         switch (params[0]) {
             case "users":
@@ -21,10 +21,15 @@ public class Command {
             case "setstatus":
                 return sendStatus(params[1], param[1]);
             default:
-                return 404;
+                return sendMessage(params[0], params[1], param[1]);
         }
 
 
+    }
+
+    private static int sendMessage(String toName, String msgStr, String fromName) throws IOException {
+        Message m = new Message(fromName, toName, msgStr);
+        return m.send(Utils.getURL() + "/add");
     }
 
     private static int sendStatus(String param, String userName) throws IOException {
