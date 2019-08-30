@@ -40,8 +40,9 @@ public class GetThread implements Runnable {
                     if (list != null) {
                         for (Message m : list.getList()) {
                             System.out.println(m);
-                            n++;
+                            //n++;
                         }
+                        n=list.getListRealSize();
                     }
                 } finally {
                     is.close();
